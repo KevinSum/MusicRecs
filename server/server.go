@@ -18,7 +18,7 @@ func SetupServer(done chan bool) {
 	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
 
 	// Add endpoints for functions
-	mux.HandleFunc("/test", test)
+	mux.HandleFunc("/test", hello)
 
 	// Set up HTTP server
 	srv := &http.Server{
@@ -34,6 +34,6 @@ func SetupServer(done chan bool) {
 	log.Fatal(srv.ListenAndServe())
 }
 
-func test(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Hello World!")
+func hello(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Hello World!\n")
 }
