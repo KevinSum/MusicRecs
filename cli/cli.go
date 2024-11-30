@@ -43,6 +43,10 @@ func StartCLI() {
 
 func getCommands() map[string]cliCommand {
 	return map[string]cliCommand{
+		"help": {
+			description: "Displays a help message",
+			callback:    commandHelp,
+		},
 		"hello": {
 			description: "Say hello",
 			callback:    commandHello,
