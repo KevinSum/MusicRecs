@@ -1,7 +1,7 @@
 package main
 
 import (
-	"MusicRecs/CLI"
+	"MusicRecs/cli"
 	"MusicRecs/server"
 )
 
@@ -11,5 +11,5 @@ func main() {
 
 	go server.SetupServer(serverReady)
 	<-serverReady
-	CLI.StartCLI()
+	cli.StartCLI()
 }
