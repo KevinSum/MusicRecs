@@ -2,7 +2,7 @@ package cli
 
 import "fmt"
 
-func commandHelp() error {
+func commandHelp(args ...interface{}) error {
 	fmt.Println()
 	for key, cmd := range getCommands() {
 		fmt.Printf("%s: %s\n", key, cmd.description)

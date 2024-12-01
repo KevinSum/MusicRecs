@@ -7,9 +7,11 @@ import (
 	"strings"
 )
 
+type Callback func(args ...interface{}) error
+
 type cliCommand struct {
 	description string
-	callback    func() error
+	callback    Callback
 }
 
 func StartCLI() {
@@ -19,16 +21,27 @@ func StartCLI() {
 		// Get input from user
 		fmt.Print("MusicRec > ")
 		scanner.Scan()
-		words := cleanInput(scanner.Text())
-		if len(words) == 0 {
+		input := scanner.Text()
+		if len(input) == 0 {
 			continue
 		}
-		commandName := words
+
+		// Split the input into command and arguments
+		parts := strings.Fields(input)
+		commandName := parts[0] // The command is the first part
+
+		// Get the rest as arguments
+		var args []interface{}
+		if len(parts) > 1 {
+			for _, arg := range parts[1:] {
+				args = append(args, arg)
+			}
+		}
 
 		// Check if we have a command for the input. If so call the callback function
 		command, exists := getCommands()[commandName]
 		if exists {
-			err := command.callback()
+			err := command.callback(args...)
 			if err != nil {
 				fmt.Println("Error calling command:", err)
 			}
@@ -47,14 +60,9 @@ func getCommands() map[string]cliCommand {
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
-		"hello": {
-			description: "Say hello",
-			callback:    commandHello,
+		"getSimilarArtists": {
+			description: "Retrive list of similar artists",
+			callback:    commandGetSimilarArtists,
 		},
 	}
-}
-
-func cleanInput(text string) string {
-	output := strings.ToLower(text)
-	return output
 }
