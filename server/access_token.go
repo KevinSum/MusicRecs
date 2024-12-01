@@ -17,14 +17,14 @@ const (
 )
 
 // Struct to parse JSON response into when requesting access token from Spotify API
-type AccessToken struct {
+type accessToken struct {
 	Token               string `json:"access_token"`
 	TokenType           string `json:"token_type"`
 	ExpiresIn           int    `json:"expires_in"`
 	tokenExpirationTime time.Time
 }
 
-func getAccessToken(accessToken *AccessToken) error {
+func getAccessToken(accessToken *accessToken) error {
 	// Create data for POST request
 	data := url.Values{}
 	data.Set("grant_type", "client_credentials")
