@@ -18,7 +18,7 @@ const (
 
 // Struct to parse JSON response into when requesting access token from Spotify API
 type accessToken struct {
-	Token               string `json:"access_token"`
+	AccessToken         string `json:"access_token"`
 	TokenType           string `json:"token_type"`
 	ExpiresIn           int    `json:"expires_in"`
 	tokenExpirationTime time.Time
