@@ -9,6 +9,10 @@ import (
 )
 
 func commandGetSimilarArtists(args ...interface{}) error {
+	if len(args) != 1 {
+		return fmt.Errorf("getSimilarArtists expects one argument: the artist name")
+	}
+
 	// Extract arguments
 	artist, ok := args[0].(string)
 
