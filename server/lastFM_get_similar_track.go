@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	apiKey  = "d9682240b6b24b5c5b82bea5620cad72"
-	baseURL = "https://ws.audioscrobbler.com/2.0/?method=track.getsimilar"
+	apiKey              = "d9682240b6b24b5c5b82bea5620cad72"
+	similarTrackBaseURL = "https://ws.audioscrobbler.com/2.0/?method=track.getsimilar"
 )
 
 // Struct to parse JSON response into when getting similar tracks from last.FM API
@@ -27,7 +27,7 @@ type similarTracksData struct {
 
 func getSimilarTracks(track, artist string, similarTracksData *similarTracksData) error {
 	// Construct our endpoint URL
-	url := baseURL + fmt.Sprintf("&artist=%s&track=%s&api_key=%s&autocorrect=1&format=json",
+	url := similarTrackBaseURL + fmt.Sprintf("&artist=%s&track=%s&api_key=%s&autocorrect=1&format=json",
 		artist, track, apiKey)
 
 	// Create a new HTTP GET request
