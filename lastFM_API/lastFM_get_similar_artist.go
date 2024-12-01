@@ -1,4 +1,4 @@
-package server
+package lastFM_API
 
 import (
 	"encoding/json"
@@ -11,7 +11,7 @@ const similarArtistBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.g
 
 // Struct to parse JSON response into when getting similar artists from last.FM API
 
-type similarArtistsData struct {
+type SimilarArtistsData struct {
 	SimilarArtists struct {
 		Artist []struct {
 			Name string `json:"name"`
@@ -19,7 +19,7 @@ type similarArtistsData struct {
 	} `json:"similarartists"`
 }
 
-func getSimilarArtists(artist string, similarArtistsData *similarArtistsData) error {
+func GetSimilarArtists(artist string, similarArtistsData *SimilarArtistsData) error {
 	// Construct our endpoint URL
 	url := similarArtistBaseURL + fmt.Sprintf("&artist=%s&api_key=%s&autocorrect=1&format=json",
 		artist, apiKey)

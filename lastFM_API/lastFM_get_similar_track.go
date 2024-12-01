@@ -1,4 +1,4 @@
-package server
+package lastFM_API
 
 import (
 	"encoding/json"
@@ -7,13 +7,10 @@ import (
 	"net/http"
 )
 
-const (
-	apiKey              = "d9682240b6b24b5c5b82bea5620cad72"
-	similarTrackBaseURL = "https://ws.audioscrobbler.com/2.0/?method=track.getsimilar"
-)
+const similarTrackBaseURL = "https://ws.audioscrobbler.com/2.0/?method=track.getsimilar"
 
 // Struct to parse JSON response into when getting similar tracks from last.FM API
-type similarTracksData struct {
+type SimilarTracksData struct {
 	SimilarTracks struct {
 		Track []struct {
 			Name   string `json:"name"`
@@ -25,7 +22,7 @@ type similarTracksData struct {
 	} `json:"similartracks"`
 }
 
-func getSimilarTracks(track, artist string, similarTracksData *similarTracksData) error {
+func GetSimilarTracks(track, artist string, similarTracksData *SimilarTracksData) error {
 	// Construct our endpoint URL
 	url := similarTrackBaseURL + fmt.Sprintf("&artist=%s&track=%s&api_key=%s&autocorrect=1&format=json",
 		artist, track, apiKey)
