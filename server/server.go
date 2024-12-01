@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -18,7 +17,8 @@ func SetupServer(done chan bool) {
 	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
 
 	// Add endpoints for functions
-	mux.HandleFunc("/test", hello)
+	mux.HandleFunc("/getSimilarTracks", getSimilarTracks)
+	mux.HandleFunc("/getSimilarArtists", getSimilarArtists)
 
 	// Set up HTTP server
 	srv := &http.Server{
@@ -32,8 +32,4 @@ func SetupServer(done chan bool) {
 
 	// Start listening and serving
 	log.Fatal(srv.ListenAndServe())
-}
-
-func hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Hello World!\n")
 }
