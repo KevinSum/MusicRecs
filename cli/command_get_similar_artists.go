@@ -51,14 +51,14 @@ func commandGetSimilarArtists(args ...interface{}) error {
 	}
 
 	// Parse the JSON response
-	var similarTracksData lastFM_API.SimilarArtistsData
-	err = json.Unmarshal(body, &similarTracksData)
+	var similarArtistsData lastFM_API.SimilarArtistsData
+	err = json.Unmarshal(body, &similarArtistsData)
 	if err != nil {
 		return err
 	}
 
 	// Print the results
-	for _, track := range similarTracksData.SimilarArtists.Artist {
+	for _, track := range similarArtistsData.SimilarArtists.Artist {
 		fmt.Println(track.Name)
 	}
 
