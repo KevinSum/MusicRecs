@@ -64,5 +64,9 @@ func getCommands() map[string]cliCommand {
 			description: "Retrive list of similar artists",
 			callback:    commandGetSimilarArtists,
 		},
+		"getSimilarTracks": {
+			description: "Retrive list of similar tracks",
+			callback:    commandGetSimilarTracks,
+		},
 	}
 }
