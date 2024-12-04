@@ -1,9 +1,9 @@
 package server
 
 import (
-	"MusicRecs/server/lastFM_API"
 	"encoding/json"
 	"fmt"
+	"musicRecsServer/lastFM_API"
 	"net/http"
 )
 

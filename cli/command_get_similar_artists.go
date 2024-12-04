@@ -1,12 +1,19 @@
-package cli
+package main
 
 import (
-	"MusicRecs/server/lastFM_API"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 )
+
+type similarArtistsData struct {
+	SimilarArtists struct {
+		Artist []struct {
+			Name string `json:"name"`
+		} `json:"artist"`
+	} `json:"similarartists"`
+}
 
 func commandGetSimilarArtists(args ...interface{}) error {
 	if len(args) != 1 {
@@ -51,7 +58,7 @@ func commandGetSimilarArtists(args ...interface{}) error {
 	}
 
 	// Parse the JSON response
-	var similarArtistsData lastFM_API.SimilarArtistsData
+	var similarArtistsData similarArtistsData
 	err = json.Unmarshal(body, &similarArtistsData)
 	if err != nil {
 		return err

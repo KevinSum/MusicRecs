@@ -1,4 +1,4 @@
-package cli
+package main
 
 import (
 	"bufio"
@@ -7,14 +7,14 @@ import (
 	"strings"
 )
 
-type Callback func(args ...interface{}) error
+type callback func(args ...interface{}) error
 
 type cliCommand struct {
 	description string
-	callback    Callback
+	callback    callback
 }
 
-func StartCLI() {
+func startCLI() {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {

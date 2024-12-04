@@ -1,18 +1,26 @@
-package cli
+package main
 
 import (
-	"MusicRecs/server/lastFM_API"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 )
 
-func commandGetSimilarTracks(args ...interface{}) error {
-	//fmt.Printf("Args received: %v\n", args)
-	//fmt.Printf("Arg[0]: %v (type: %T)\n", args[0], args[0])
-	//fmt.Printf("Arg[1]: %v (type: %T)\n", args[1], args[1])
+// Struct to parse JSON response into when getting similar tracks from last.FM API
+type similarTracksData struct {
+	SimilarTracks struct {
+		Track []struct {
+			Name   string `json:"name"`
+			Artist struct {
+				Name string `json:"name"`
+			} `json:"artist"`
+			URL string `json:"url"`
+		} `json:"track"`
+	} `json:"similartracks"`
+}
 
+func commandGetSimilarTracks(args ...interface{}) error {
 	if len(args) != 2 {
 		return fmt.Errorf("getSimilarTracks expects two argument: the track name and artist name")
 	}
@@ -56,7 +64,7 @@ func commandGetSimilarTracks(args ...interface{}) error {
 	}
 
 	// Parse the JSON response
-	var similarTracksData lastFM_API.SimilarTracksData
+	var similarTracksData similarTracksData
 	err = json.Unmarshal(body, &similarTracksData)
 	if err != nil {
 		return err
