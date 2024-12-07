@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func getSimilarArtistsEndpoint(w http.ResponseWriter, r *http.Request) {
+func endpointGetSimilarArtists(w http.ResponseWriter, r *http.Request) {
 	// Parse query parameters
 	artist := r.URL.Query().Get("artist")
 

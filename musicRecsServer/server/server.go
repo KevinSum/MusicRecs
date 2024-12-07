@@ -15,8 +15,8 @@ func SetupServer() {
 	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
 
 	// Add endpoints for functions
-	mux.HandleFunc("/getSimilarTracks", getSimilarTracksEndpoint)
-	mux.HandleFunc("/getSimilarArtists", getSimilarArtistsEndpoint)
+	mux.HandleFunc("/getSimilarTracks", endpointGetSimilarTracks)
+	mux.HandleFunc("/getSimilarArtists", endpointGetSimilarArtists)
 
 	// Set up HTTP server
 	const port = "8080"
