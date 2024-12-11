@@ -68,5 +68,17 @@ func getCommands() map[string]cliCommand {
 			description: "Retrive list of similar tracks",
 			callback:    commandGetSimilarTracks,
 		},
+		"addToBlacklist": {
+			description: "Add an artist to blacklist so that they won't be recommended",
+			callback:    commandAddToBlacklist,
+		},
+		"removeFromBlacklist": {
+			description: "Remove artist from blacklist",
+			callback:    commandRemoveFromBlacklist,
+		},
+		"getBlacklist": {
+			description: "Retrive list of blacklisted artists",
+			callback:    commandGetBlacklist,
+		},
 	}
 }

@@ -5,7 +5,7 @@ FROM golang:1.23.2
 WORKDIR /app
 
 # Copy Go modules to download dependencies
-COPY go.mod ./
+COPY go.mod go.sum ./
 RUN go mod download
 
 # Copy all Go files
