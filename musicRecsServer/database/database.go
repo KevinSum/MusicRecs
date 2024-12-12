@@ -78,3 +78,22 @@ func FetchBlacklist(db *sql.DB, machineID string) ([]string, error) {
 	}
 	return artists, nil
 }
+
+func IsBlacklisted(db *sql.DB, machineID, artistName string) (bool, error) {
+	query := `
+	SELECT * FROM blacklist
+	WHERE machine_id = ? AND artist_name = ?;
+	`
+
+	rows, err := db.Query(query, machineID, artistName)
+	if err != nil {
+		return false, fmt.Errorf("failed to check if artist is blacklisted: %v", err)
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		return true, nil
+	}
+
+	return false, nil
+}

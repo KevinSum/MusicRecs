@@ -9,6 +9,8 @@ import (
 	"strings"
 )
 
+const numResults = 10
+
 func SetupServer() {
 	database, err := database.CreateDatabase()
 	if err != nil {
@@ -24,8 +26,8 @@ func SetupServer() {
 	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
 
 	// Add endpoints for functions
-	mux.HandleFunc("/getSimilarTracks", endpointGetSimilarTracks)
-	mux.HandleFunc("/getSimilarArtists", endpointGetSimilarArtists)
+	mux.HandleFunc("/getSimilarTracks", endpointGetSimilarTracks(database))
+	mux.HandleFunc("/getSimilarArtists", endpointGetSimilarArtists(database))
 	mux.HandleFunc("/addToBlacklist", endpointAddToBlacklist(database))
 	mux.HandleFunc("/removeFromBlacklist", endpointRemoveFromBlacklist(database))
 	mux.HandleFunc("/fetchBlacklist", endpointFetchBlacklist(database))
