@@ -64,16 +64,17 @@ func commandGetSimilarTracks(args ...interface{}) error {
 	}
 
 	// Parse the JSON response
-	var similarTracksData similarTracksData
-	err = json.Unmarshal(body, &similarTracksData)
+	var similarTracks []string
+	err = json.Unmarshal(body, &similarTracks)
 	if err != nil {
 		return err
 	}
 
 	// Print the results
-	for _, track := range similarTracksData.SimilarTracks.Track {
-		fmt.Println(track.Name + " (" + track.Artist.Name + ")")
+	for _, track := range similarTracks {
+		fmt.Println(track)
 	}
+	fmt.Println()
 
 	return nil
 }

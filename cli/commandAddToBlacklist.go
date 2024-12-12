@@ -43,6 +43,7 @@ func commandAddToBlacklist(args ...interface{}) error {
 	}
 
 	fmt.Println(artist + " added to blacklist")
+	fmt.Println()
 
 	return nil
 }

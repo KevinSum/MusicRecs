@@ -41,6 +41,7 @@ func startCLI() {
 		}
 
 		// Check if we have a command for the input. If so call the callback function
+		fmt.Println()
 		command, exists := getCommands()[commandName]
 		if exists {
 			err := command.callback(args...)

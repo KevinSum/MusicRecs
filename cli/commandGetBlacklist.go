@@ -45,6 +45,7 @@ func commandGetBlacklist(args ...interface{}) error {
 	for _, artist := range blacklist {
 		fmt.Println(artist)
 	}
+	fmt.Println()
 
 	return nil
 }
