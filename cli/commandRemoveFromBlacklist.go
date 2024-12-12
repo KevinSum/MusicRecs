@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 func commandRemoveFromBlacklist(args ...interface{}) error {
@@ -19,7 +20,7 @@ func commandRemoveFromBlacklist(args ...interface{}) error {
 	}
 
 	// Construct url
-	url := fmt.Sprintf("http://localhost:8080/removeFromBlacklist?artist=%s", artist)
+	url := fmt.Sprintf("http://localhost:8080/removeFromBlacklist?artist=%s", url.QueryEscape(artist))
 
 	// Create a new HTTP GET request
 	req, err := http.NewRequest("DELETE", url, nil)
