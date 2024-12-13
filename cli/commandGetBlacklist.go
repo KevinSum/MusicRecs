@@ -8,8 +8,11 @@ import (
 )
 
 func commandGetBlacklist(args ...interface{}) error {
+	// Construct url
+	url := baseURL + port + "/fetchBlacklist"
+
 	// Create a new HTTP GET request
-	req, err := http.NewRequest("GET", "http://localhost:8080/fetchBlacklist", nil)
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
 		return err

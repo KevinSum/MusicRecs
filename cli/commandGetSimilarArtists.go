@@ -29,7 +29,8 @@ func commandGetSimilarArtists(args ...interface{}) error {
 	}
 
 	// Construct url
-	url := fmt.Sprintf("http://localhost:8080/getSimilarArtists?artist=%s", artist)
+
+	url := fmt.Sprintf(baseURL+port+"/getSimilarArtists?artist=%s", artist)
 
 	// Create a new HTTP GET request
 	req, err := http.NewRequest("GET", url, nil)

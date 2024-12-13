@@ -20,7 +20,7 @@ func commandAddToBlacklist(args ...interface{}) error {
 	}
 
 	// Construct url
-	url := fmt.Sprintf("http://localhost:8080/addToBlacklist?artist=%s", url.QueryEscape(artist))
+	url := fmt.Sprintf(baseURL+port+"/addToBlacklist?artist=%s", url.QueryEscape(artist))
 
 	// Create a new HTTP GET request
 	req, err := http.NewRequest("POST", url, nil)

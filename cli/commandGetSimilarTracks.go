@@ -35,7 +35,7 @@ func commandGetSimilarTracks(args ...interface{}) error {
 	}
 
 	// Construct url
-	url := fmt.Sprintf("http://localhost:8080/getSimilarTracks?track=%s&artist=%s", track, artist)
+	url := fmt.Sprintf(baseURL+port+"/getSimilarTracks?track=%s&artist=%s", track, artist)
 
 	// Create a new HTTP GET request
 	req, err := http.NewRequest("GET", url, nil)
