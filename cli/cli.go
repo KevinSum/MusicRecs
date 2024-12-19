@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-const baseURL = "http://13.51.176.1:"
+const baseURL = "http://13.49.49.245:"
 const port = "8080"
 
 type callback func(args ...interface{}) error
