@@ -1,3 +1,5 @@
 package lastFM_API
 
-const apiKey = "d9682240b6b24b5c5b82bea5620cad72"
+// Use your lastFM API key here
+// TODO: I should actually store my lastFM key in github secrets or something
+const apiKey = ""
